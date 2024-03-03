@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/first_screen.dart';
 
-class QuizScreen extends StatefulWidget {
+class Quiz extends StatefulWidget {
   
-  const QuizScreen({super.key});
+  const Quiz({super.key});
   @override
-  State<QuizScreen> createState(){
-    return _QuizScreen();
+  State<Quiz> createState(){
+    return _QuizState();
   }
 
 }
 
-class _QuizScreen extends State<QuizScreen> {
+class _QuizState extends State<Quiz> {
+  
+
   @override
   Widget build(context) {
     return MaterialApp(
