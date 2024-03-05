@@ -20,12 +20,12 @@ class _QuizState extends State<Quiz> {
     activeScreen = FirstScreen(switchScreen);
     super.initState();
   }*/
-  var activeScreen = 'first-screen';
+  var activeScreen = 'first_screen';
   List<String> selectedAnswers = [];
 
   void switchScreen() {
     setState(() {
-      activeScreen = 'questions-screen';
+      activeScreen = 'questions_screen';
     });
   }
 
@@ -35,7 +35,7 @@ class _QuizState extends State<Quiz> {
     if(selectedAnswers.length == questions.length)
     {
       setState(() {
-      activeScreen = 'result-screen';
+      activeScreen = 'result_screen';
     });
     }
   }
@@ -46,10 +46,10 @@ class _QuizState extends State<Quiz> {
   
     Widget screenWidget = FirstScreen(switchScreen);
 
-    if(activeScreen == 'questions-screen') {
+    if(activeScreen == 'questions_screen') {
       screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
     }
-    if(activeScreen == 'result-screen') {
+    if(activeScreen == 'result_screen') {
       screenWidget = ResultsScreen(chosenAnswers: selectedAnswers);
     }
 
