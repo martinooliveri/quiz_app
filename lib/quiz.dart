@@ -13,13 +13,6 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  /*Widget? activeScreen;
-
-  @override
-  void initState(){
-    activeScreen = FirstScreen(switchScreen);
-    super.initState();
-  }*/
   var activeScreen = 'first_screen';
   List<String> selectedAnswers = [];
 
@@ -29,28 +22,35 @@ class _QuizState extends State<Quiz> {
     });
   }
 
-  void chooseAnswer(String answer){
+  void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
 
-    if(selectedAnswers.length == questions.length)
-    {
+    if (selectedAnswers.length == questions.length) {
       setState(() {
-      activeScreen = 'result_screen';
-    });
+        activeScreen = 'result_screen';
+      });
     }
   }
 
+  void restartQuiz() {
+    selectedAnswers = [];
+    setState(() {
+      activeScreen = 'questions_screen';
+    });
+  }
 
   @override
   Widget build(context) {
-  
     Widget screenWidget = FirstScreen(switchScreen);
 
-    if(activeScreen == 'questions_screen') {
+    if (activeScreen == 'questions_screen') {
       screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
     }
-    if(activeScreen == 'result_screen') {
-      screenWidget = ResultsScreen(chosenAnswers: selectedAnswers);
+    if (activeScreen == 'result_screen') {
+      screenWidget = ResultsScreen(
+        chosenAnswers: selectedAnswers,
+        restartQuiz: restartQuiz,
+      );
     }
 
     return MaterialApp(
@@ -63,7 +63,6 @@ class _QuizState extends State<Quiz> {
               end: Alignment.bottomRight,
             ),
           ),
-          //child: activeScreen <--- Widget
           child: screenWidget,
         ),
       ),
